@@ -71,6 +71,41 @@ class Alumno{
     }
 
     /**
+     * Obtiene los campos de una meta con un identificador
+     * determinado
+     *
+     * @param $idCurso Identificador del curso
+     * @return mixed
+     */
+    public static function getByCurso($idCurso){
+        // Consulta de la meta
+        $consulta = "SELECT idAlumno,
+                            dni,
+                            nombre,
+                            primer_apellido,
+                            segundo_apellido,
+                            email,
+                            telefono
+                    FROM Alumnos
+                    WHERE idCurso = ?";
+
+        try {
+            // Preparar sentencia
+            $comando = Database::getInstance()->getDb()->prepare($consulta);
+            // Ejecutar sentencia preparada
+            $comando->execute(array($idCurso));
+            // Capturar primera fila del resultado
+            $row = $comando->fetch(PDO::FETCH_ASSOC);
+            return $row;
+
+        } catch (PDOException $e) {
+            // Aquí puedes clasificar el error dependiendo de la excepción
+            // para presentarlo en la respuesta JSON
+            return -1;
+        }
+    }
+
+    /**
      * Actualiza un registro de la bases de datos basado
      * en los nuevos valores relacionados con un identificador
      *

@@ -2,6 +2,7 @@
 /**
  * Clase que envuelve una instancia de la clase PDO
  * para el manejo de la base de datos
+ * Más info: http://www.hermosaprogramacion.com/2015/05/crear-un-webservice-para-android-con-mysql-php-y-json/
  */
 
 require_once 'mysql_login.php';
